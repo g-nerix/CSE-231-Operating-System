@@ -1,0 +1,26 @@
+266,290d265
+< SYSCALL_DEFINE2(print_vruntime, int, req_pid, int, user_time)
+< {
+< 	struct task_struct *task_info;
+< 	unsigned long long vrun = user_time*1000000;
+< 
+< 	// if (rtnice_val < 0) {
+< 	// 	printk(KERN_ALERT "Invalid rtnice: %d\n", rtnice_val);
+< 	// 	return -EINVAL; // Invalid argument (rtnice_val)
+< 	// }
+< 
+< 	if (req_pid < 1 || req_pid > 2147483647) {
+< 		printk(KERN_ALERT "Invalid PID: %d\n", req_pid);
+< 		return -EINVAL; // Invalid argument (req_pid)
+< 	}
+< 
+< 	// Get process task info
+< 	task_info = pid_task(find_vpid(req_pid), PIDTYPE_PID);
+< 	
+< 	printk(KERN_INFO "Initial vrun for PID: %d is %lld nanoseconds\n", req_pid, task_info->se.vruntime);
+< 	task_info->se.vruntime += vrun;
+< 	printk(KERN_INFO "Final vrun for PID: %d is %lld nanoseconds\n", req_pid, task_info->se.vruntime);
+< 
+< 	// return zero (success)
+< 	return 0;
+< }
