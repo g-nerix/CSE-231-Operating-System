@@ -1,0 +1,22 @@
+203,223d202
+< SYSCALL_DEFINE1(hello_world, char* ,msg){
+< 	char buf[256];
+< 	long copied = strncpy_from_user(buf,msg,sizeof(buf));
+< 	if(copied < 0 || copied == sizeof(buf)){
+< 		return -EFAULT;
+< 	}
+< 	printk(KERN_INFO "hello_world called with \"%s\"\n",buf);
+< 	return 0;
+< }
+< 
+< SYSCALL_DEFINE2(kernel_2d_memcpy, float** , mat1, float**, mat2){
+< 	float buf[24];
+< 	
+< 	printk("executing kernel_2d_memcpy syscall...\n");
+< 	__copy_from_user(buf, mat1, 24);
+< 	__copy_to_user(mat2, buf, 24);
+< 
+< 	return 0;
+< }
+< 
+< 
